@@ -1,0 +1,338 @@
+<script>
+    // top sparklines
+    var randomizeArray = function(arg) {
+      var array = arg.slice();
+      var currentIndex = array.length,
+        temporaryValue, randomIndex;
+      while (0 !== currentIndex) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+      }
+      return array;
+    }
+    // data for the sparklines that appear below header area
+    var sparklineData = [47, 45, 54, 38, 56, 24, 65, 31];
+    // topb big chart  
+    var spark5 = {
+      chart: {
+        type: 'line',
+        height: 50,
+        sparkline: {
+          enabled: true
+        },
+      },
+      stroke: {
+        width: 3
+      },
+      colors: ['var(--chart-color4)'],
+      series: [{
+        data: randomizeArray(sparklineData)
+      }],
+      series: [{
+        data: randomizeArray(sparklineData)
+      }],
+    }
+    var spark5 = new ApexCharts(document.querySelector("#apexspark5"), spark5);
+    spark5.render();
+    // Salary Statistics
+    var options = {
+      series: [{
+        name: 'Developer',
+        data: [44, 55, 41, 67, 22, 43, 21, 49, 33, 29, 44, 38]
+      }, {
+        name: 'Marketing',
+        data: [13, 23, 20, 8, 13, 27, 21, 49, 33, 29, 33, 12]
+      }, {
+        name: 'Sales',
+        data: [11, 17, 21, 49, 33, 29, 15, 15, 21, 14, 15, 13]
+      }],
+      chart: {
+        type: 'bar',
+        height: 300,
+        stacked: true,
+        stackType: '100%',
+        toolbar: {
+          show: false,
+        },
+      },
+      colors: ['var(--chart-color1)', 'var(--chart-color2)', 'var(--chart-color3)'],
+      responsive: [{
+        breakpoint: 480,
+        options: {
+          legend: {
+            position: 'bottom',
+            offsetX: -10,
+            offsetY: 0
+          }
+        }
+      }],
+      xaxis: {
+        categories: ['Jan', 'Feb', 'March', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+      },
+      fill: {
+        opacity: 1
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      legend: {
+        position: 'bottom',
+        horizontalAlign: 'center',
+      },
+    };
+    var chart = new ApexCharts(document.querySelector("#apex-SalaryStatistics"), options);
+    chart.render();
+    // Income Analysis by Domain
+    var options = {
+      chart: {
+        height: 200,
+        type: 'bar',
+        toolbar: {
+          show: false,
+        },
+      },
+      colors: ['var(--chart-color1)'],
+      grid: {
+        yaxis: {
+          lines: {
+            show: false,
+          }
+        },
+        padding: {
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0
+        },
+      },
+      plotOptions: {
+        bar: {
+          horizontal: true,
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      series: [{
+        data: [378, 430, 248, 470, 715, 89, ]
+      }],
+      xaxis: {
+        categories: ['Hospital', ' RealEsate', 'Education', 'ERP', 'Banking', 'Other'],
+      }
+    }
+    var chart = new ApexCharts(document.querySelector("#apex-AnalysisDomain"), options);
+    chart.render();
+    // Statistics by Technology
+    var options = {
+      chart: {
+        height: 200,
+        type: 'bar',
+        toolbar: {
+          show: false,
+        },
+      },
+      colors: ['var(--chart-color5)'],
+      grid: {
+        yaxis: {
+          lines: {
+            show: false,
+          }
+        },
+        padding: {
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0
+        },
+      },
+      plotOptions: {
+        bar: {
+          horizontal: true,
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      series: [{
+        data: [55, 75, 22, 49, 7, 39]
+      }],
+      xaxis: {
+        categories: ['React', 'PHP', 'VueJs', 'Angular', 'Wordpress', 'DotNet'],
+      }
+    }
+    var chart = new ApexCharts(document.querySelector("#apex-StatisticsbyTechnology"), options);
+    chart.render();
+    // Income Analysis
+    var options = {
+      chart: {
+        height: 270,
+        type: 'donut',
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      legend: {
+        position: 'top',
+        horizontalAlign: 'center',
+        show: false,
+      },
+      colors: ['var(--chart-color1)', 'var(--chart-color2)', 'var(--chart-color3)'],
+      series: [55, 35, 10],
+      responsive: [{
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 200
+          },
+          legend: {
+            position: 'bottom'
+          }
+        }
+      }]
+    }
+    var chart = new ApexCharts(document.querySelector("#apex-DeviceusebyStudent"), options);
+    chart.render();
+    // DataTables
+    $('#myDataTable').addClass('nowrap').dataTable({
+      responsive: true,
+      searching: false,
+      paging: false,
+      ordering: true,
+      info: false,
+    });
+  </script>
+
+
+
+
+
+<script>
+    var options = {
+      chart: {
+        height: 500,
+        type: 'heatmap',
+        toolbar: {
+          show: false,
+        },
+      },
+      plotOptions: {
+        heatmap: {
+          shadeIntensity: 0.7,
+          radius: 0,
+          useFillColorAsStroke: false,
+          colorScale: {
+            ranges: [{
+              from: 0,
+              to: 0,
+              name: 'Absent',
+              color: '#E73957'
+            }, {
+              from: 1,
+              to: 1,
+              name: 'Present',
+              color: '#79B989'
+            }]
+          }
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        width: 2,
+      },
+      series: [{
+        name: 'Joseph',
+        data: generateData(30, {
+          min: 0,
+          max: 1
+        })
+      }, {
+        name: 'Mark',
+        data: generateData(30, {
+          min: 0,
+          max: 1
+        })
+      }, {
+        name: 'Jessia',
+        data: generateData(30, {
+          min: 0,
+          max: 1
+        })
+      }, {
+        name: 'charlie',
+        data: generateData(30, {
+          min: 0,
+          max: 1
+        })
+      }, {
+        name: 'Kozma',
+        data: generateData(30, {
+          min: 0,
+          max: 1
+        })
+      }, {
+        name: 'Mark',
+        data: generateData(30, {
+          min: 0,
+          max: 1
+        })
+      }, {
+        name: 'Calvin',
+        data: generateData(30, {
+          min: 0,
+          max: 1
+        })
+      }, {
+        name: 'Scott',
+        data: generateData(30, {
+          min: 0,
+          max: 1
+        })
+      }, {
+        name: 'Jack',
+        data: generateData(30, {
+          min: 0,
+          max: 1
+        })
+      }, {
+        name: 'Alex',
+        data: generateData(30, {
+          min: 0,
+          max: 1
+        })
+      }, {
+        name: 'Cameron',
+        data: generateData(30, {
+          min: 0,
+          max: 1
+        })
+      }, {
+        name: 'Vincent',
+        data: generateData(30, {
+          min: 0,
+          max: 1
+        })
+      }, {
+        name: 'Aaliyah',
+        data: generateData(30, {
+          min: 0,
+          max: 1
+        })
+      }],
+    };
+    var chart = new ApexCharts(document.querySelector("#apex-Attendance"), options);
+    chart.render();
+
+    function generateData(rangeLength, minMax) {
+      var data = [];
+      for (i = 0; i < rangeLength; i++) {
+        console.log(Math.round(Math.random()));
+        data.push(Math.round(Math.random()));
+      }
+      return data;
+    }
+  </script>

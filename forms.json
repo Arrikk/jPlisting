@@ -1,0 +1,1 @@
+[{"id":2,"title":"Property Type","type":"text","attr_name":"property_type","placeholder":"The Property You Need","enabled":false},{"id":3,"title":"Bedrooms","attr_name":"bedrooms","placeholder":"","type":"number","enabled":false}]

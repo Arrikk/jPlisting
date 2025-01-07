@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controllers\Api;
 
 use App\Models\Evaluation as ModelsEvaluation;
@@ -10,12 +11,14 @@ use Core\Http\Req;
 use Core\Http\Res;
 use Core\Pipes\Pipes;
 
-class Evaluation extends Controller{
+class Evaluation extends Controller
+{
 
-    public function convertToQuery(Array $payload) {
+    public function convertToQuery(array $payload)
+    {
         $out = "?";
-        foreach($payload as $k => $v){
-            $out .= $k."=".$v."&";
+        foreach ($payload as $k => $v) {
+            $out .= $k . "=" . $v . "&";
         }
 
         $out = preg_replace("/&$/", "", $out);
@@ -23,9 +26,11 @@ class Evaluation extends Controller{
         return $out;
     }
 
-    public function evaluateProperty(Pipes $p) {
+    public function evaluateProperty(Pipes $p)
+    {
 
         $pipe = (array) $p->pipe([
+            // "key" => ""
             "address" => $p->address,
             "propertyType" => $p->propertyType,
             "bedrooms" => $p->bedrooms,
@@ -41,14 +46,14 @@ class Evaluation extends Controller{
             $queryString = $this->convertToQuery($pipe);
 
             $APIKEY = Env::RENT_CAST_KEY();
-            $URL = Env::RENT_CAST_URL()."avm/value".$queryString;
-    
+            $URL = Env::RENT_CAST_URL() . "avm/value" . $queryString;
+
             $request = Req::sleek([], [
                 "X-Api-Key" => $APIKEY
             ])->get($URL);
 
 
-            
+
             Res::json($request, true);
 
             $data = json_encode($request);
@@ -60,12 +65,84 @@ class Evaluation extends Controller{
         } catch (\Throwable $th) {
             Res::status(400)::throwable($th);
         }
-
-
-
     }
 
-    public function saveUser(Pipes $p) {
+    public function propertyDataValuation(Pipes $p)
+    {
+
+        $out = '{
+    "status": "success",
+    "postcode": "OX4 1YB",
+    "postcode_type": "full",
+    "params": {
+        "property_type": "Flat",
+        "construction_date": "Pre-1914",
+        "internal_area": "828",
+        "bedrooms": "3",
+        "bathrooms": "1",
+        "finish_quality": "Below average",
+        "outdoor_space": "Garden",
+        "off_street_parking": "1 space"
+    },
+    "result": {
+        "estimate": 355000,
+        "margin": 20000
+    },
+    "process_time": "5.72"
+}';
+
+
+        $pipe = (array) $p->pipe([
+            "key" => Env::PROPERTY_DATA_KEY(),
+            "postcode" => $p->postcode()->isrequired()->postcode,
+            "property_type" => $p->property_type()->isrequired()->property_type,
+            "construction_date" => $p->construction_date()->isrequired()->construction_date,
+            "internal_area" => $p->internal_area()->isrequired()->internal_area,
+            "bedrooms" => $p->bedrooms()->isnumeric()->bedrooms,
+            "bathrooms" => $p->bathrooms()->isnumeric()->bathrooms,
+            "finish_quality" => $p->finish_quality()->isrequired()->finish_quality,
+            "outdoor_space" => $p->outdoor_space()->isrequired()->outdoor_space,
+            "off_street_parking" => $p->off_street_parking()->isrequired()->off_street_parking,
+            "id" => $p->id()->isrequired()->id,
+        ]);
+
+
+        $id = $p->id;
+        $data =  json_decode($out);
+        
+        Res::json($data, true);
+        $evaluation = Valuation::dump([
+            "user" => $id,
+            "data" => $out
+        ]);
+        exit;
+
+        try {
+
+            $queryString = $this->convertToQuery($pipe);
+
+            $URL = Env::PROPERTY_DATA_URL() . $queryString;
+
+            // $request = Req::sleek([], [
+            // ])->get($URL);
+            $request = Req::slim([], [])->get($URL)->Call();
+
+
+            Res::json($request);
+
+            $data = json_encode($request);
+
+            $evaluation = Valuation::dump([
+                "user" => $id,
+                "data" => $data
+            ]);
+        } catch (\Throwable $th) {
+            Res::status(400)::throwable($th);
+        }
+    }
+
+    public function saveUser(Pipes $p)
+    {
 
         $pipe = $p->pipe([
             "fullname" => $p->fullname()->isrequired()->serialize()->fullname,
@@ -79,9 +156,5 @@ class Evaluation extends Controller{
         } catch (\Throwable $th) {
             Res::status(400)::throwable($th);
         }
-
-
-
     }
-
 }

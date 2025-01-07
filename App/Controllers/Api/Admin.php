@@ -3,6 +3,7 @@
 namespace App\Controllers\Api;
 
 use App\Controllers\Authenticated\Authenticated;
+use App\Helpers\Filters;
 use App\Models\Form;
 use App\Models\User;
 use App\Models\Valuation;
@@ -17,6 +18,7 @@ class Admin extends Authenticated
 
         try {
             $p->page()->default(1)->toint()->page;
+            
             $users = User::paginate($p->page)::find([]);
 
             return Res::send($users);
@@ -27,15 +29,18 @@ class Admin extends Authenticated
 
     public function userValuation(Pipes $p)
     {
-
         try {
             $p->pipe(["user" => $p->user()->isrequired()->isnumeric()->user]);
             $user = Valuation::find(["where.user" => $p->user]);
+            $user = Filters::from($user)->append([
+                "data" => fn ($d) => json_decode($d)
+            ])->done();
             return Res::send($user);
         } catch (\Throwable $th) {
             Res::status(400)::throwable($th);
         }
     }
+
     public function updateForm(Pipes $p)
     {
 
@@ -47,7 +52,14 @@ class Admin extends Authenticated
                 "placeholder" => $p->placeholder()->toString()->placeholder,
             ]);
 
-            $form = updateForm(new Form(title: $p->title, id: $p->id, enabled: $p->enabled, placeholder:$p->placeholder));
+            $form = updateForm(
+                new Form(
+                    title: $p->title, 
+                    id: $p->id, 
+                    enabled: $p->enabled, 
+                    placeholder:$p->placeholder
+                )
+            );
             $form = findForm($p->id);
 
 
@@ -56,6 +68,7 @@ class Admin extends Authenticated
             Res::status(400)::throwable($th);
         }
     }
+
     public function valuationForms(Pipes $p)
     {
         try {

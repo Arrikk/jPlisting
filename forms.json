@@ -1,1 +1,74 @@
-[{"id":2,"title":"Property Type","type":"text","attr_name":"property_type","placeholder":"The Property You Need","enabled":false},{"id":3,"title":"Bedrooms","attr_name":"bedrooms","placeholder":"","type":"number","enabled":false}]
+[
+    {
+        "id": 1,
+        "title": "Postcode",
+        "type": "text",
+        "attr_name": "postcode",
+        "placeholder": "A full UK postcode",
+        "required": true,
+        "enabled": true
+    },
+    {
+        "id": 2,
+        "title": "Property Type",
+        "attr_name": "property_type",
+        "placeholder": "Property type (list)",
+        "type": "text",
+        "required": true,
+        "enabled": true
+    },
+    {
+        "id": 3,
+        "title": "Construction",
+        "attr_name": "construction_date",
+        "placeholder": "Construction date",
+        "type": "text",
+        "required": true,
+        "enabled": true
+    },
+    {
+        "id": 4,
+        "title": "Internal Area",
+        "attr_name": "internal_area",
+        "placeholder": "Internal area in square feet (Min: 300)",
+        "type": "text",
+        "required": true,
+        "enabled": true
+    },
+    {
+        "id": 5,
+        "title": "Bedroom",
+        "attr_name": "bedrooms",
+        "placeholder": "Number of bedrooms (0-5)",
+        "type": "number",
+        "required": true,
+        "enabled": true
+    },
+    {
+        "id": 6, 
+        "title": "Interior",
+        "attr_name": "finish_quality",
+        "placeholder": "Interior finish quality (list)",
+        "type": "text",
+        "required": true,
+        "enabled": true
+    },
+    {
+        "id": 7,
+        "title": "Outdoor Space",
+        "attr_name": "outdoor_space",
+        "placeholder": "Outdoor space (list)",
+        "type": "text",
+        "required": true,
+        "enabled": true
+    },
+    {
+        "id": 8,
+        "title": "Off-street",
+        "attr_name": "off_street_parking",
+        "placeholder": "Off-street parking spaces (0-3)",
+        "type": "text",
+        "required": true,
+        "enabled": true
+    }
+]

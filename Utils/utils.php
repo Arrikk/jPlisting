@@ -24,12 +24,18 @@ if (!function_exists("findForm")) {
         $file = "forms.json";
         if (file_exists($file)) {
             $content = json_decode(file_get_contents($file));
-            if(!$id) return $content;
-            $f = array_filter($content, function ($form) use ($id) {
-                if ($form->id === $id) return $form;
-                return null;
-            });
-            return (count($f) > 0) ? $f[0] : null;
+            if(!$id)  return $content;
+
+            $f = null;
+            foreach ($content as $form) {
+
+                if ($form->id === $id):
+                    $f = $form;
+                    break;
+                endif;
+                continue;
+            }
+            return $f;
         }
     }
 }

@@ -52,14 +52,14 @@ class Admin extends Authenticated
                 "placeholder" => $p->placeholder()->toString()->placeholder,
             ]);
 
-            $form = updateForm(
-                new Form(
-                    title: $p->title, 
-                    id: $p->id, 
-                    enabled: $p->enabled, 
-                    placeholder:$p->placeholder
-                )
-            );
+            // $form = updateForm(
+            //     new Form(
+            //         title: $p->title, 
+            //         id: $p->id, 
+            //         enabled: $p->enabled, 
+            //         placeholder:$p->placeholder
+            //     )
+            // );
             $form = findForm($p->id);
 
 

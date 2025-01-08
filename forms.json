@@ -12,8 +12,8 @@
         "id": 2,
         "title": "Property Type",
         "attr_name": "property_type",
-        "placeholder": "Property type (list)",
-        "type": "text",
+        "placeholder": "Property type",
+        "type": "select",
         "required": true,
         "enabled": true
     },
@@ -22,7 +22,7 @@
         "title": "Construction",
         "attr_name": "construction_date",
         "placeholder": "Construction date",
-        "type": "text",
+        "type": "select",
         "required": true,
         "enabled": true
     },
@@ -45,11 +45,20 @@
         "enabled": true
     },
     {
+        "id": 9,
+        "title": "Bathroom",
+        "attr_name": "bedrooms",
+        "placeholder": "Number of bathrooms (0-5)",
+        "type": "number",
+        "required": true,
+        "enabled": true
+    },
+    {
         "id": 6, 
         "title": "Interior",
         "attr_name": "finish_quality",
-        "placeholder": "Interior finish quality (list)",
-        "type": "text",
+        "placeholder": "Interior finish quality",
+        "type": "select",
         "required": true,
         "enabled": true
     },
@@ -57,8 +66,8 @@
         "id": 7,
         "title": "Outdoor Space",
         "attr_name": "outdoor_space",
-        "placeholder": "Outdoor space (list)",
-        "type": "text",
+        "placeholder": "Outdoor space",
+        "type": "select",
         "required": true,
         "enabled": true
     },
@@ -67,7 +76,7 @@
         "title": "Off-street",
         "attr_name": "off_street_parking",
         "placeholder": "Off-street parking spaces (0-3)",
-        "type": "text",
+        "type": "select",
         "required": true,
         "enabled": true
     }

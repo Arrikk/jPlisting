@@ -70,25 +70,36 @@ class Evaluation extends Controller
     public function propertyDataValuation(Pipes $p)
     {
 
-        $out = '{
-    "status": "success",
-    "postcode": "OX4 1YB",
-    "postcode_type": "full",
-    "params": {
-        "property_type": "Flat",
-        "construction_date": "Pre-1914",
-        "internal_area": "828",
-        "bedrooms": "3",
-        "bathrooms": "1",
-        "finish_quality": "Below average",
-        "outdoor_space": "Garden",
-        "off_street_parking": "1 space"
-    },
-    "result": {
-        "estimate": 355000,
-        "margin": 20000
-    },
-    "process_time": "5.72"
+//         $out = '{
+//     "status": "success",
+//     "postcode": "OX4 1YB",
+//     "postcode_type": "full",
+//     "params": {
+//         "property_type": "Flat",
+//         "construction_date": "Pre-1914",
+//         "internal_area": "828",
+//         "bedrooms": "3",
+//         "bathrooms": "1",
+//         "finish_quality": "Below average",
+//         "outdoor_space": "Garden",
+//         "off_street_parking": "1 space"
+//     },
+//     "result": {
+//         "estimate": 355000,
+//         "margin": 20000
+//     },
+//     "process_time": "5.72"
+// }';
+
+$out = '{
+    "status": false,
+    "status_code": 422,
+    "response": {
+        "status": "error",
+        "code": "702",
+        "message": "Invalid input: finish quality",
+        "process_time": "0.04"
+    }
 }';
 
 
@@ -108,15 +119,7 @@ class Evaluation extends Controller
 
 
         $id = $p->id;
-        $data =  json_decode($out);
-        
-        Res::json($data, true);
-        $evaluation = Valuation::dump([
-            "user" => $id,
-            "data" => $out
-        ]);
-        exit;
-
+        Res::status(422)::json(json_decode($out));
         try {
 
             $queryString = $this->convertToQuery($pipe);
@@ -128,7 +131,7 @@ class Evaluation extends Controller
             $request = Req::slim([], [])->get($URL)->Call();
 
 
-            Res::json($request);
+            Res::json($request, true);
 
             $data = json_encode($request);
 
@@ -155,7 +158,7 @@ class Evaluation extends Controller
             if($user)
                 $user->updateUser((array) $pipe);
             else $user = User::dump((array) $pipe);
-            
+
             Res::json($user);
         } catch (\Throwable $th) {
             Res::status(400)::throwable($th);

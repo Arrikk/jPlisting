@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "title": "Postcode",
+        "title": "Postal Code",
         "type": "text",
         "attr_name": "postcode",
         "placeholder": "A full UK postcode",
@@ -14,6 +14,12 @@
         "attr_name": "property_type",
         "placeholder": "Property type",
         "type": "select",
+        "options": [
+            "flat",
+            "detached_house",
+            "terraced_house",
+            "semi-detached_house"
+        ],
         "required": true,
         "enabled": true
     },
@@ -23,6 +29,11 @@
         "attr_name": "construction_date",
         "placeholder": "Construction date",
         "type": "select",
+        "options": [
+            "pre_1914",
+            "1914_2000",
+            "2000_onwards"
+        ],
         "required": true,
         "enabled": true
     },
@@ -47,18 +58,25 @@
     {
         "id": 9,
         "title": "Bathroom",
-        "attr_name": "bedrooms",
+        "attr_name": "bathrooms",
         "placeholder": "Number of bathrooms (0-5)",
         "type": "number",
         "required": true,
         "enabled": true
     },
     {
-        "id": 6, 
+        "id": 6,
         "title": "Interior",
         "attr_name": "finish_quality",
         "placeholder": "Interior finish quality",
         "type": "select",
+        "options": [
+            "very_high",
+            "high",
+            "average",
+            "below_average",
+            "unmodernised"
+        ],
         "required": true,
         "enabled": true
     },
@@ -68,6 +86,12 @@
         "attr_name": "outdoor_space",
         "placeholder": "Outdoor space",
         "type": "select",
+        "options": [
+            "none",
+            "balcony_terrace",
+            "garden",
+            "garden_very_large"
+        ],
         "required": true,
         "enabled": true
     },

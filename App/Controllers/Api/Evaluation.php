@@ -70,37 +70,37 @@ class Evaluation extends Controller
     public function propertyDataValuation(Pipes $p)
     {
 
-//         $out = '{
-//     "status": "success",
-//     "postcode": "OX4 1YB",
-//     "postcode_type": "full",
-//     "params": {
-//         "property_type": "Flat",
-//         "construction_date": "Pre-1914",
-//         "internal_area": "828",
-//         "bedrooms": "3",
-//         "bathrooms": "1",
-//         "finish_quality": "Below average",
-//         "outdoor_space": "Garden",
-//         "off_street_parking": "1 space"
-//     },
-//     "result": {
-//         "estimate": 355000,
-//         "margin": 20000
-//     },
-//     "process_time": "5.72"
-// }';
-
-$out = '{
-    "status": false,
-    "status_code": 422,
-    "response": {
-        "status": "error",
-        "code": "702",
-        "message": "Invalid input: finish quality",
-        "process_time": "0.04"
-    }
+        $out = '{
+    "status": "success",
+    "postcode": "OX4 1YB",
+    "postcode_type": "full",
+    "params": {
+        "property_type": "Flat",
+        "construction_date": "Pre-1914",
+        "internal_area": "828",
+        "bedrooms": "3",
+        "bathrooms": "1",
+        "finish_quality": "Below average",
+        "outdoor_space": "Garden",
+        "off_street_parking": "1 space"
+    },
+    "result": {
+        "estimate": 355000,
+        "margin": 20000
+    },
+    "process_time": "5.72"
 }';
+
+// $out = '{
+//     "status": false,
+//     "status_code": 422,
+//     "response": {
+//         "status": "error",
+//         "code": "702",
+//         "message": "Invalid input: finish quality",
+//         "process_time": "0.04"
+//     }
+// }';
 
 
         $pipe = (array) $p->pipe([

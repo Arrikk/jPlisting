@@ -32,9 +32,9 @@ trait Extended
     public static function save($data = null)
     {
         $This = new static($data);
-        $token = new Token();
-        $This->hashed = $token->getHashed();
-        $This->token = $token->getValue();
+        // $token = new Token();
+        // $This->hashed = $token->getHashed();
+        // $This->token = $token->getValue();
 
         $This->validate();
         if (!empty($This->errors)) Res::status(400)::error($This->errors);
@@ -117,7 +117,7 @@ trait Extended
      */
     public static function userExists($user, $ignore_id = null)
     {
-        $user = self::findOne(['username' => $user, 'or.email' => $user]);
+        $user = self::findOne(['email' => $user]);
         if ($user) :
             if ($user->id !== $ignore_id) {
                 return true;

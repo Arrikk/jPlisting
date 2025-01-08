@@ -119,7 +119,7 @@ class Evaluation extends Controller
 
 
         $id = $p->id;
-        Res::json(json_decode($out));
+        // Res::json(json_decode($out));
         try {
 
             $queryString = $this->convertToQuery($pipe);

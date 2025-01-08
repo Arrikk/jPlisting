@@ -151,7 +151,11 @@ class Evaluation extends Controller
         ]);
 
         try {
-            $user = User::dump((array) $pipe);
+            $user = User::findOne(['email' => $pipe->email]);
+            if($user)
+                $user->updateUser((array) $pipe);
+            else $user = User::dump((array) $pipe);
+            
             Res::json($user);
         } catch (\Throwable $th) {
             Res::status(400)::throwable($th);

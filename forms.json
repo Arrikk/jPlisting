@@ -100,7 +100,7 @@
         "title": "Off-street",
         "attr_name": "off_street_parking",
         "placeholder": "Off-street parking spaces (0-3)",
-        "type": "select",
+        "type": "number",
         "required": true,
         "enabled": true
     }

@@ -2,6 +2,7 @@
 
 use App\Controllers\Api\Admin;
 use App\Controllers\Api\Evaluation;
+use App\Controllers\Api\Location;
 use Core\Router\Router as Route;
 
 Route::get('', 'home@index');
@@ -14,6 +15,7 @@ Route::get('forms', [Admin::class, "valuation-forms"]);
 Route::put('admin/form', [Admin::class, "update-form"]);
 Route::get('admin/users', [Admin::class, "users"]);
 Route::get('admin/user-valuation', [Admin::class, "user-valuation"]);
+Route::get('zipcode-lookup', [Location::class, "lookup-zipcode"]);
 Route::post('send-valuation/{id:[\d]+}', [Evaluation::class, "sendCopy"]);
 
 // Auth Route

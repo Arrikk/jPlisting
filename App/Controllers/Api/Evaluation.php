@@ -128,7 +128,9 @@ class Evaluation extends Controller
 
             // $request = Req::sleek([], [
             // ])->get($URL);
-            $request = Req::slim([], [])->get($URL)->Call();
+            $request = file_get_contents($URL);
+            $request = json_decode($request);
+            // $request = Req::slim([], [])->get($URL)->Call();
 
 
             Res::json($request, true);

@@ -1,1 +1,98 @@
-[{"id":1,"title":"Postal Code","type":"text","attr_name":"postcode","placeholder":"A full UK postcode","required":true,"enabled":true},{"id":2,"title":"Property Type","attr_name":"property_type","placeholder":"Property type","type":"select","options":["flat","detached_house","terraced_house","semi-detached_house"],"required":true,"enabled":true},{"id":3,"title":"Construction","attr_name":"construction_date","placeholder":"Construction date","type":"select","options":["pre_1914","1914_2000","2000_onwards"],"required":true,"enabled":true},{"id":4,"title":"Internal Area","attr_name":"internal_area","placeholder":"Internal area in square feet (Min: 300)","type":"text","required":true,"enabled":false},{"id":5,"title":"Bedroom","attr_name":"bedrooms","placeholder":"Number of bedrooms (0-5)","type":"number","required":true,"enabled":false},{"id":9,"title":"Bathroom","attr_name":"bathrooms","placeholder":"Number of bathrooms (0-5)","type":"number","required":true,"enabled":true},{"id":6,"title":"Interior","attr_name":"finish_quality","placeholder":"Interior finish quality","type":"select","options":["very_high","high","average","below_average","unmodernised"],"required":true,"enabled":false},{"id":7,"title":"Outdoor Space","attr_name":"outdoor_space","placeholder":"Outdoor space","type":"select","options":["none","balcony_terrace","garden","garden_very_large"],"required":true,"enabled":true},{"id":8,"title":"Off-street","attr_name":"off_street_parking","placeholder":"Off-street parking spaces (0-3)","type":"number","required":true,"enabled":true}]
+[
+  {
+    "id": 1,
+    "title": "Postal Code",
+    "type": "text",
+    "attr_name": "postcode",
+    "placeholder": "A full UK postcode",
+    "required": true,
+    "enabled": true
+  },
+  {
+    "id": 2,
+    "title": "Property Type",
+    "attr_name": "property_type",
+    "placeholder": "Property type",
+    "type": "select",
+    "options": [
+      "flat",
+      "detached_house",
+      "terraced_house",
+      "semi-detached_house"
+    ],
+    "required": true,
+    "enabled": true
+  },
+  {
+    "id": 3,
+    "title": "Construction",
+    "attr_name": "construction_date",
+    "placeholder": "Construction date",
+    "type": "select",
+    "options": ["pre_1914", "1914_2000", "2000_onwards"],
+    "required": true,
+    "enabled": true
+  },
+  {
+    "id": 4,
+    "title": "Internal Area",
+    "attr_name": "internal_area",
+    "placeholder": "Internal area in square feet (Min: 300)",
+    "type": "text",
+    "required": true,
+    "enabled": true
+  },
+  {
+    "id": 5,
+    "title": "Bedroom",
+    "attr_name": "bedrooms",
+    "placeholder": "Number of bedrooms (0-5)",
+    "type": "number",
+    "required": true,
+    "enabled": true
+  },
+  {
+    "id": 9,
+    "title": "Bathroom",
+    "attr_name": "bathrooms",
+    "placeholder": "Number of bathrooms (0-5)",
+    "type": "number",
+    "required": true,
+    "enabled": true
+  },
+  {
+    "id": 6,
+    "title": "Interior",
+    "attr_name": "finish_quality",
+    "placeholder": "Interior finish quality",
+    "type": "select",
+    "options": [
+      "very_high",
+      "high",
+      "average",
+      "below_average",
+      "unmodernised"
+    ],
+    "required": true,
+    "enabled": true
+  },
+  {
+    "id": 7,
+    "title": "Outdoor Space",
+    "attr_name": "outdoor_space",
+    "placeholder": "Outdoor space",
+    "type": "select",
+    "options": ["none", "balcony_terrace", "garden", "garden_very_large"],
+    "required": true,
+    "enabled": true
+  },
+  {
+    "id": 8,
+    "title": "Off-street",
+    "attr_name": "off_street_parking",
+    "placeholder": "Off-street parking spaces (0-3)",
+    "type": "number",
+    "required": true,
+    "enabled": true
+  }
+]

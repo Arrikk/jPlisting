@@ -28,9 +28,9 @@ define('FILE_PATH', 'Public/images');
 
 define('SMTP_HOST', Env::SMTP_HOST());
 define('SMTP_PORT', Env::SMTP_PORT());
-define('SMTP_SECURE', ENV::EnvSMTP_SECURE());
-define('SMTP_USERNAME', ENV::SMEnvTP_USERNAME());
-define('SMTP_PASSWORD', ENV::SMEnvTP_PASSWORD());
+define('SMTP_SECURE', ENV::SMTP_SECURE());
+define('SMTP_USERNAME', ENV::SMTP_USERNAME());
+define('SMTP_PASSWORD', ENV::SMTP_PASSWORD());
 define('MAIL_FROM', Env::MAIL_FROM());
 
 define('SECRET_KEY', ENV::SECRET_KEY());

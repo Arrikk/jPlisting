@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Api;
 
+use App\Email\Evaluation as EmailEvaluation;
 use App\Models\Evaluation as ModelsEvaluation;
 use App\Models\User;
 use App\Models\Valuation;
@@ -135,11 +136,11 @@ class Evaluation extends Controller
 
             Res::json($request, true);
 
-            $data = json_encode($request);
+            // $data = json_encode($request);
 
             $evaluation = Valuation::dump([
                 "user" => $id,
-                "data" => $data
+                "data" => $request
             ]);
         } catch (\Throwable $th) {
             Res::status(400)::throwable($th);
@@ -165,5 +166,57 @@ class Evaluation extends Controller
         } catch (\Throwable $th) {
             Res::status(400)::throwable($th);
         }
+    }
+
+    public function sendCopy(Pipes $p) {
+        $id = $this->route_params['id'];
+
+        $p->pipe([
+            "postcode" => $p->postcode()->isrequired()->postcode,
+            "property_type" => $p->property_type()->isrequired()->property_type,
+            "construction_date" => $p->construction_date()->isrequired()->construction_date,
+            "internal_area" => $p->internal_area()->isrequired()->internal_area,
+            "bedrooms" => $p->bedrooms()->isnumeric()->bedrooms,
+            "bathrooms" => $p->bathrooms()->isnumeric()->bathrooms,
+            "finish_quality" => $p->finish_quality()->isrequired()->finish_quality,
+            "outdoor_space" => $p->outdoor_space()->isrequired()->outdoor_space,
+            "off_street_parking" => $p->off_street_parking()->isrequired()->off_street_parking,
+            "address" => $p->address()->isrequired()->address,
+            "estimate" => $p->estimate()->isrequired()->estimate,
+            "margin" => $p->margin()->isrequired()->margin,
+        ]);
+
+        
+        
+        try {
+            
+            $user = User::findOne(['id' => $id]);
+            if(!$user) {
+                Res::status(404)->json(['message' => 'User not found']);
+                return;
+            }
+            
+            $eval = new EmailEvaluation(
+                postcode: $p->postcode,
+                property_type: $p->property_type,
+                construction_date: $p->construction_date,
+                internal_area: $p->internal_area,
+                bedrooms: $p->bedrooms,
+                bathrooms: $p->bathrooms,
+                finish_quality: $p->finish_quality,
+                outdoor_space: $p->outdoor_space,
+                off_street_parking: $p->off_street_parking,
+                address: $p->address,
+                estimate: $p->estimate,
+                margin: $p->margin
+            );
+
+            $eval->sendCopy($user->email);
+            
+        } catch (\Throwable $th) {
+            Res::status(400)::throwable($th);
+        }
+
+
     }
 }

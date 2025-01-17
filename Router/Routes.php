@@ -14,6 +14,7 @@ Route::get('forms', [Admin::class, "valuation-forms"]);
 Route::put('admin/form', [Admin::class, "update-form"]);
 Route::get('admin/users', [Admin::class, "users"]);
 Route::get('admin/user-valuation', [Admin::class, "user-valuation"]);
+Route::post('send-valuation/{id:[\d]+}', [Evaluation::class, "sendCopy"]);
 
 // Auth Route
 Route::post('register', 'users@register@auth');

@@ -136,11 +136,11 @@ class Evaluation extends Controller
 
             Res::json($request, true);
 
-            // $data = json_encode($request);
+            $data = json_encode($request);
 
             $evaluation = Valuation::dump([
                 "user" => $id,
-                "data" => $request
+                "data" => $data
             ]);
         } catch (\Throwable $th) {
             Res::status(400)::throwable($th);

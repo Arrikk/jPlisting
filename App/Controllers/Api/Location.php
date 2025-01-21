@@ -16,16 +16,16 @@ class Location extends Controller
         ]);
 
 
-        $sample = json_decode(file_get_contents("map.json"));
-        $addresses = [];
-        if (isset($sample->results))
-            foreach ($sample->results as  $data) {
-                $data = (object) $data;
-                $address = $data->formatted_address;
-                $addresses[] = $address;
-            }
+        // $sample = json_decode(file_get_contents("map.json"));
+        // $addresses = [];
+        // if (isset($sample->results))
+        //     foreach ($sample->results as  $data) {
+        //         $data = (object) $data;
+        //         $address = $data->formatted_address;
+        //         $addresses[] = $address;
+        //     }
 
-        Res::json($addresses);
+        // Res::json($addresses);
 
         try {
             $APIKey = Env::GOOGLE_MAPS_API_KEY();

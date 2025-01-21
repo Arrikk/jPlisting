@@ -40,7 +40,9 @@
     "placeholder": "Internal area in square feet (Min: 300)",
     "type": "text",
     "required": true,
-    "enabled": true
+    "enabled": true,
+    "default":800,
+    "hidden": true
   },
   {
     "id": 5,
@@ -88,7 +90,7 @@
   },
   {
     "id": 8,
-    "title": "Off-street",
+    "title": "Off Street Parking",
     "attr_name": "off_street_parking",
     "placeholder": "Off-street parking spaces (0-3)",
     "type": "number",

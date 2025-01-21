@@ -137,7 +137,7 @@ class Evaluation extends Controller
             Res::json($request, true);
 
             $data = json_encode($request);
-
+            
             $evaluation = Valuation::dump([
                 "user" => $id,
                 "data" => $data

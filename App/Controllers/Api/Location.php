@@ -28,20 +28,19 @@ class Location extends Controller
         // Res::json($addresses);
 
         try {
-            $APIKey = Env::GOOGLE_MAPS_API_KEY();
-            $url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=homes+in+" . urlencode($p->zipCode) . "&key=" . $APIKey;
+            $APIKey = Env::GET_ADDRESS_API_KEY();
+            $url = "https://api.getaddress.io/autocomplete/" . urlencode($p->zipCode) . "&api-key=" . $APIKey;
             $request = file_get_contents($url);
             $response = json_decode($request);
 
             $addresses = [];
 
-            if (isset($response->results))
-                foreach ($response->results as  $data) {
+            if (isset($response->suggestions))
+                foreach ($response->suggestions as $data) {
                     $data = (object) $data;
-                    $address = $data->formatted_address;
+                    $address = $data->address;
                     $addresses[] = $address;
                 }
-
             Res::json($addresses);
         } catch (\Throwable $th) {
             Res::status(400)::throwable($th);

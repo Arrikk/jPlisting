@@ -25,9 +25,9 @@
   },
   {
     "id": 3,
-    "title": "Construction",
+    "title": "Effective Age",
     "attr_name": "construction_date",
-    "placeholder": "Construction date",
+    "placeholder": "Effective Age",
     "type": "select",
     "options": ["pre_1914", "1914_2000", "2000_onwards"],
     "required": true,
@@ -36,7 +36,7 @@
   {
     "id": 4,
     "title": "Internal Area",
-    "attr_name": "internal_area",
+    "attr_name": "  ",
     "placeholder": "Internal area in square feet (Min: 300)",
     "type": "text",
     "required": true,
@@ -46,7 +46,7 @@
   },
   {
     "id": 5,
-    "title": "Bedroom",
+    "title": "Bedrooms",
     "attr_name": "bedrooms",
     "placeholder": "Number of bedrooms (0-5)",
     "type": "number",
@@ -55,7 +55,7 @@
   },
   {
     "id": 9,
-    "title": "Bathroom",
+    "title": "Bathrooms",
     "attr_name": "bathrooms",
     "placeholder": "Number of bathrooms (0-5)",
     "type": "number",
@@ -90,9 +90,9 @@
   },
   {
     "id": 8,
-    "title": "Off Street Parking",
+    "title": "Driveway",
     "attr_name": "off_street_parking",
-    "placeholder": "Off-street parking spaces (0-3)",
+    "placeholder": "Driveway (0-3)",
     "type": "number",
     "required": true,
     "enabled": true

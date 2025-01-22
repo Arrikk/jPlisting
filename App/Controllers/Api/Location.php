@@ -29,7 +29,7 @@ class Location extends Controller
 
         try {
             $APIKey = Env::GET_ADDRESS_API_KEY();
-            $url = "https://api.getaddress.io/autocomplete/" . urlencode($p->zipCode) . "&api-key=" . $APIKey;
+            $url = "https://api.getaddress.io/autocomplete/" . str_replace(" ", "", $p->zipCode) . "?api-key=" . $APIKey;
             $request = file_get_contents($url);
             $response = json_decode($request);
 

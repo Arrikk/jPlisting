@@ -90,9 +90,9 @@
   },
   {
     "id": 8,
-    "title": "Driveway",
+    "title": "Off-street Parking Spaces",
     "attr_name": "off_street_parking",
-    "placeholder": "Driveway (0-3)",
+    "placeholder": "Off-street Parking Spaces (0-3)",
     "type": "number",
     "required": true,
     "enabled": true

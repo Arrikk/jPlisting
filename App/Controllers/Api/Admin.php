@@ -18,8 +18,12 @@ class Admin extends Authenticated
 
         try {
             $p->page()->default(1)->toint()->page;
-            
-            $users = User::paginate($p->page)::find([]);
+
+            $users = User::paginate($p->page, 30)::find([]);
+            // $users = User::find([
+            //     '$.group' => "MONTH(created_at), MONTHNAME(created_at)",
+            //     '$.order' => "YEAR(created_at), MONTH(created_at)"
+            // ], "MONTHNAME(created_at) as period, COUNT(DISTINCT id) as total, DATE_FORMAT(created_at, '%Y-%m') as inDate");
 
             return Res::send($users);
         } catch (\Throwable $th) {
@@ -33,7 +37,7 @@ class Admin extends Authenticated
             $p->pipe(["user" => $p->user()->isrequired()->isnumeric()->user]);
             $user = Valuation::find(["where.user" => $p->user]);
             $user = Filters::from($user)->append([
-                "data" => fn ($d) => json_decode($d)
+                "data" => fn($d) => json_decode($d)
             ])->done();
             return Res::send($user);
         } catch (\Throwable $th) {
@@ -54,10 +58,10 @@ class Admin extends Authenticated
 
             $form = updateForm(
                 new Form(
-                    title: $p->title, 
-                    id: $p->id, 
-                    enabled: $p->enabled, 
-                    placeholder:$p->placeholder
+                    title: $p->title,
+                    id: $p->id,
+                    enabled: $p->enabled,
+                    placeholder: $p->placeholder
                 )
             );
             $form = findForm($p->id);
@@ -78,6 +82,36 @@ class Admin extends Authenticated
             Res::status(400)::throwable($th);
         }
     }
-}
+    public function exportUsers(Pipes $p)
+    {
+        try {
+            $p->page()->default(1)->toint()->page;
 
-// jplisting.test/evaluate?address=5500 Grand Lake Drive, San Antonio, TX, 78244&propertyType=Single Family&bedrooms=4&bathrooms=2&squareFootage=1600&compCount=5
+            $data = User::paginate($p->page, 30)::find([], "id as ID, fullname as Fullname, email as Email, postcode as Postcode");
+            $date = date("Y-m-d-H:i:s");
+
+            if (count($data->items) > 0) {
+                
+                header('Content-Type: text/csv');
+                header('Content-Disposition: attachment; filename="' . $date . '-export.csv"');
+                header('Pragma: no-cache');
+                header('Expires: 0');
+
+                $output = fopen('php://output', 'w');
+
+                $items = (array) $data->items;
+                
+                $headers = array_keys((array) $items[0]);
+                fputcsv($output, $headers);
+                foreach ($items as $item) {
+                    fputcsv($output, (array) $item);
+                }
+                fclose($output);
+            }
+
+            echo "JPLISTING!";
+        } catch (\Throwable $th) {
+            Res::status(400)::throwable($th);
+        }
+    }
+}

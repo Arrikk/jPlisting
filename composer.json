@@ -5,7 +5,8 @@
         "phpmailer/phpmailer": "^6.6",
         "ext-gd": "*",
         "guzzlehttp/guzzle": "^7.5",
-        "vlucas/phpdotenv": "^5.5"
+        "vlucas/phpdotenv": "^5.5",
+        "getbrevo/brevo-php": "1.x.x"
     },
     "config": {
         "platform-check": false,

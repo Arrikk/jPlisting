@@ -16,18 +16,6 @@ class Home extends Controller
   }
   public function dashboard()
   {
-    View::draw('dashboard/index');
+    View::draw('home/index');
   }
-
-
-  public function chat()
-  {
-    View::draw('ai/chat');
-  }
-  public function test()
-  {
-    View::draw('ai/test');
-  }
-
-
 }

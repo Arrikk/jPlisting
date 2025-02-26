@@ -11,6 +11,7 @@ use Core\Env;
 use Core\Http\Req;
 use Core\Http\Res;
 use Core\Pipes\Pipes;
+use App\Helpers\Brevo;
 
 class Evaluation extends Controller
 {
@@ -157,10 +158,14 @@ class Evaluation extends Controller
         ]);
 
         try {
+            $brevo = new Brevo();
             $user = User::findOne(['email' => $pipe->email]);
-            if($user)
+            if($user):
                 $user->updateUser((array) $pipe);
-            else $user = User::dump((array) $pipe);
+            else:
+                $user = User::dump((array) $pipe);
+                $brevo->createContact($pipe->email, $pipe->fullname);
+            endif;
 
             Res::json($user);
         } catch (\Throwable $th) {
@@ -211,7 +216,7 @@ class Evaluation extends Controller
                 margin: $p->margin
             );
 
-            $eval->sendCopy($user->email);
+            $eval->sendCopy('horpeyhermi@gmail.com');
             
         } catch (\Throwable $th) {
             Res::status(400)::throwable($th);

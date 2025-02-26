@@ -1,18 +1,16 @@
 <?php
 
-use App\Views\components\app\App;
+use App\Views\App;
 use Core\View;
 
 # start html tag containing the head and other metas
 // App::html($title ?? 'Leviplatte Admin');
 App::render(
-     View::component('app/html', ['title' => $title ?? 'Leviplatte Admin']),
      // View::component('app/topbar'),
      App::body( 
           dirname(__FILE__) .'/'. $__page . '.php',
           $page ?? 'list'
      ),
-     View::component('app/htmlend')
 );
 # create topbar across all pages
 // App::topbar();

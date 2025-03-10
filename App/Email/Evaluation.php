@@ -22,6 +22,7 @@ class Evaluation
         public string|int $estimate,
         public string|int $margin,
         public string $address,
+        // public string $name
     ) {
         // $args = func_get_args();
         // foreach ($args as $arg) {
@@ -35,7 +36,7 @@ class Evaluation
     {
         try {
             //code...
-            return  Mail::mail($email, Env::MAIL_FROM(), "Valuation Result", Templates::EmailNotifications($this));
+            return  Mail::mail($email, Env::MAIL_FROM(), "JP Listings' Home Valuation Result", Templates::EmailNotifications($this));
         } catch (\Throwable $th) {
             //throw $th;
             Res::status(400)->error($th->getMessage());

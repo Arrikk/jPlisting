@@ -7,15 +7,6 @@ use Core\View;
 
 class App extends Component
 {
-    // public function _html($title = '')
-    // {
-    //     View::component('app/html', ['title' => $title]);
-    // }
-
-    // public function _topbar()
-    // {
-    //     View::component('app/topbar');
-    // }
 
     public function _body($body, $menu = null, $page = null, $other = null)
     {

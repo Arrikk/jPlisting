@@ -203,8 +203,8 @@ class Evaluation extends Controller
             
             $eval = new EmailEvaluation(
                 postcode: $p->postcode,
-                property_type: $p->property_type,
-                construction_date: $p->construction_date,
+                property_type: str_replace("_", "-", $p->property_type),
+                construction_date: str_replace("_", "-", $p->construction_date),
                 internal_area: $p->internal_area,
                 bedrooms: $p->bedrooms,
                 bathrooms: $p->bathrooms,
@@ -216,7 +216,7 @@ class Evaluation extends Controller
                 margin: $p->margin
             );
 
-            $eval->sendCopy('horpeyhermi@gmail.com');
+            $eval->sendCopy($user->email);
             
         } catch (\Throwable $th) {
             Res::status(400)::throwable($th);

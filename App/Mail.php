@@ -35,6 +35,9 @@ class Mail
         $mail->SMTPSecure = (string) SMTP_SECURE;
         $mail->Username   = (string) SMTP_USERNAME;   //SMTP username
         $mail->Password   = (string) SMTP_PASSWORD;
+
+        $mail->CharSet = 'UTF-8';
+        $mail->Encoding = 'base64';
         
         
         $mail->setFrom($from, (string) MAIL_FROM);
